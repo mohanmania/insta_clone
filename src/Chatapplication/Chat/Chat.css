@@ -1,0 +1,318 @@
+/* Main container */
+.main-container {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  background-color: #333131;
+}
+
+.chatroom-container {
+  display: flex;
+  width: 90%;
+  height: 90%;
+  max-width: 600px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  overflow: hidden;
+  animation: fadeIn 1s ease-in-out;
+}
+
+
+.sidebar {
+  width: 30%;
+  background-color: #2c3e50;
+  color: #ecf0f1;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  animation: slideInLeft 1s ease-in-out;
+}
+
+.sidebar h3 {
+  margin-top: 0;
+  font-size: 1.5em;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.sidebar ul li {
+  padding: 15px 10px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  color: rgb(233, 231, 231);
+  font-size: medium;
+}
+
+.sidebar ul li:hover {
+  background-color: #34495e;
+  text-decoration: underline;
+  border: #333;
+  font-size: 25px;
+  color: aquamarine;
+}
+
+/* Chat content styles */
+.chat-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #ecf0f1;
+}
+
+/* Create room input box */
+.create-room {
+  padding: 20px;
+  border-bottom: 1px solid #ddd;
+  background-color: #6f7274;
+  animation: slideInTop 1s ease-in-out;
+}
+
+.create-room input {
+  padding: 10px;
+  width: 80%;
+  font-weight: 300;
+  font-family: 'Times New Roman', Times, serif;
+  color: black;
+  margin-right: 10px;
+  border: none;
+  border-radius: 5px;
+}
+
+.create-room button {
+  padding: 10px 15px;
+  background-color: #abb5bb;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 5px;
+}
+
+.create-room button:hover {
+  background-color: #2980b9;
+}
+
+/* Chatbox messages */
+.chat-box {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+  max-height: 600px;
+}
+
+.message {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.message img {
+  border-radius: 50%;
+  margin-right: 15px;
+  width: 40px;
+  height: 40px;
+}
+
+.message strong {
+  margin-right: 10px;
+}
+
+form {
+  display: flex;
+  align-items: center;
+}
+
+form input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 80%;
+}
+
+form input[type="file"] {
+  margin-right: 10px;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: #2ecc71;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+form button:hover {
+  background-color: #27ae60;
+}
+
+/* Message expiry options */
+.message-expiry {
+  margin-top: 20px;
+}
+
+.message-expiry label {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.message-expiry select {
+  padding: 5px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slideInTop {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+/* Media queries for different screen sizes */
+
+/* Mobile devices */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    display: none;
+    overflow: auto;
+  }
+
+  .chatroom-container {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  .chat-content { 
+    width: 100%; 
+  }
+
+  .create-room { 
+    width: 100%;
+    padding: 15px;
+    border: none;
+    background-color: #4c5052;
+  }
+
+  .messages {
+    margin-bottom: 0;
+    border-bottom: none;
+  }
+
+  form input[type="text"] {
+    padding: 10px;
+    width: 80%;
+  }
+
+  form button {
+    width: 100%;
+    padding: 12px;
+  }
+
+  .chat-box {
+    max-height: 300px;
+    padding: 15px;
+  }
+
+  /* Fade in effect */
+  .chatroom-container {
+    animation: fadeIn 1s ease-in-out;
+  }
+
+  /* Increased spacing between messages */
+  .message {
+    margin-bottom: 20px;
+  }
+
+  /* Adjust message expiry dropdown for mobile */
+  .message-expiry select {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
+/* Tablet devices */
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 30%;
+    display: block;
+  }
+
+  .chatroom-container {
+    width: 100%;
+    flex-direction: row;
+  }
+
+  .chat-content {
+    width: 70%;
+    padding: 20px;
+  }
+
+  .create-room input {
+    width: 70%;
+    margin-right: 10px;
+  }
+
+  .chat-box {
+    max-height: 400px;
+  }
+
+  .message {
+    margin-bottom: 20px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1025px) {
+  .sidebar {
+    width: 25%;
+  }
+
+  .chatroom-container {
+    width: 70%;
+    flex-direction: row;
+  }
+
+  .create-room input {
+    width: 80%;
+  }
+
+  .chat-box {
+    max-height: 500px;
+  }
+}

@@ -1,0 +1,205 @@
+
+
+.chatbot {
+    width: 600px;  /* Increased width */
+    max-width: 100%;
+    margin: 50px auto;
+    border-radius: 20px;
+    padding: 25px;
+    font-family: 'Arial', sans-serif;
+    background-color: #1e1e1e;
+    box-shadow: 0 15px 30px rgba(97, 96, 96, 0.2);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease-in-out;
+    border: 2px solid #444;
+}
+
+/* Chat History Section */
+.chat-history {
+    height: 500px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-bottom: 2px solid #333;
+    background-color: #252525;
+    border-radius: 10px;
+}
+
+/* Chat Messages */
+.chat-history .user,
+.chat-history .bot {
+    max-width: 75%;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 10px;
+    word-wrap: break-word;
+    animation: slideIn 0.4s ease-out;
+    font-size: 15px;
+}
+
+.chat-history .user {
+    background-color: #8692a2;
+    color: #1f1e1e;
+    font-family: Arial, Helvetica, sans-serif;
+    align-self: flex-end;
+    text-align: right;
+}
+
+.chat-history .bot {
+    background-color: #333;
+    color: #ddd;
+    align-self: flex-start;
+    text-align: left;
+}
+
+/* Chat Input Section */
+.chat-input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 10px;
+    border-top: 1px solid #444;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+}
+
+.chat-input input {
+    width: 70%;  /* Increased input width */
+    padding: 6px;
+    border-radius: 20px;
+    border: 1px solid #666;
+    font-size: 15px;
+    background: #333;
+    color: #ddd;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+.chat-input input:focus {
+    border-color: #8a8d93;
+}
+
+/* Buttons */
+.chat-input button {
+    padding: 5px 5px;  /* Reduced button size */
+    /* border-radius: 15px; */
+    background-color: #87a3cb;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;  /* Reduced text size */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-left: 5px;
+    /* width: 20px; */
+}
+
+.chat-input button:hover {
+    background-color: #82b3ff;
+    transform: scale(1.05);
+}
+
+/* Help Button */
+.chat-input button#help-btn {
+    background-color: #56c56f;
+}
+
+.chat-input button#help-btn:hover {
+    background-color: #72d386;
+}
+
+/* FAQ Section */
+.faq-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #2e2e2e;
+    border-radius: 15px;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.faq-section h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ddd;
+    margin-bottom: 15px;
+}
+
+.faq-item {
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.faq-item:hover {
+    background-color: #444;
+    transform: scale(1.05);
+}
+
+.faq-item p {
+    margin: 0;
+    font-size: 15px;
+    color: #ddd;
+}
+
+/* Scrollbar Styling */
+.chat-history::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-history::-webkit-scrollbar-thumb {
+    background-color: #779cd1;
+    border-radius: 10px;
+}
+
+.chat-history::-webkit-scrollbar-track {
+    background-color: #333;
+}
+
+/* Fade-In Animation */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* Slide-In Animation for Messages */
+@keyframes slideIn {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .chatbot {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .chat-history {
+        height: 350px;
+    }
+
+    .chat-input input {
+        width: 85%;  /* Adjusted for mobile screens */
+    }
+
+    .chat-input button {
+        width: 15%;
+        padding: 6px;
+    }
+
+    .faq-section {
+        width: 90%;
+        max-height: 200px;
+    }
+}
