@@ -240,10 +240,7 @@ function Leftnav({ userId }) {
           <button onClick={closeNotificationDetails}>Close</button>
         </div>
       )}
-       {/* <div className="navlink" onClick={() => setShowSearchBar(!showSearchBar)}>
-        <SearchTwoToneIcon sx={{ fontSize: "30px", margin: "0px 10px" }} />
-        <div className="navName">Search</div>
-      </div> */}
+      
 
 {showSearchBar && (
         <div className="searchBarOverlay">
@@ -262,7 +259,7 @@ function Leftnav({ userId }) {
               ) : searchResult ? (
                 <div className="userResult">
                   <img
-                    src={searchResult.photoURL}
+                    src="https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg"
                     alt={searchResult.username}
                     className="userPhoto"
                   />
