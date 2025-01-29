@@ -32,7 +32,7 @@ export default function Rightnav() {
   const handleConfirmLogout = () => {
     setOpenConfirm(false);
     alert('Your logout is successful.');
-    navigate("/login");
+    navigate("/");
   };
 
   const handleMouseLeave = () => {

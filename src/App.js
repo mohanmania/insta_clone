@@ -28,10 +28,10 @@ function App() {
           <Route path="/reels" element={<Vedios />} />
           <Route path="/userprofile" element={<SearchComponent/>}/>
 
-          <Route path="/login" element={<Login />} />
+          <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
 
-          <Route path="/" element={<Register />} />
+          <Route path="/signup" element={<Register />} />
 
           <Route path="/message" element={<ChatRoom />} />
           <Route path="/help" element={<Chatbot/>}/>

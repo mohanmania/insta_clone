@@ -74,12 +74,17 @@ function Login() {
                             </Button>
                             <p>
                                 New user?{" "}
-                                <span onClick={() => navigate("/")}>
+                                <span onClick={() => navigate("/signup")}>
                                     Signup
                                 </span>
+                                <p onClick={()=> navigate("/home")} style={{color:"black" ,textDecoration:"underline",cursor:"pointer", font:"bold"}}>Guest LOgin</p>
                             </p>
+                            
+
                         </form>
+                       
                     </div>
+                
                 </div>
             </div>
         );

@@ -94,7 +94,8 @@ function Register() {
                 <input type="date" name="dob" placeholder="Enter your Date of Birth" value={formData.dob} onChange={handleChange} required />
                 <input type="password" name="password" placeholder="Enter your password" value={formData.password} onChange={handleChange} required />
                 <Button type="primary" htmlType="submit">Submit</Button>
-                <p>Already have an account? <span style={{ textDecoration: "underline", color: "royalblue", cursor: "pointer" }} onClick={() => navigate("/login")}>Login</span></p>
+                {/* <Button type="danger" oncClick = {()=> navigate("/home")}>guest</Button> */}
+                <p>Already have an account? <span style={{ textDecoration: "underline", color: "royalblue", cursor: "pointer" }} onClick={() => navigate("/")}>Login</span></p>
             </form>
         </div>
     );

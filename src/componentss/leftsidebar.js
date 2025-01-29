@@ -107,7 +107,7 @@ function Leftnav({ userId }) {
   const handleConfirmLogout = () => {
     setOpenConfirm(false);
     alert('Your logout is successful.');
-    navigate("/login");
+    navigate("/");
   };
 
   const handleCancelLogout = () => {
