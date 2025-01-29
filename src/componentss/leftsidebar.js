@@ -53,12 +53,13 @@ function Leftnav({ userId }) {
     },
   ];
 
-  const handleSearch = async () => {
-    if (!searchInput.trim()) {
-      setErrorMessage("Please enter a valid username.");
-      return;
-    }
+ const handleSearch = async () => {
+  if (!searchInput.trim()) {
+    setErrorMessage("Please enter a valid username.");
+    return;
+  }
 
+  
     try {
       setErrorMessage("");
       setSearchResult(null);
@@ -228,7 +229,7 @@ function Leftnav({ userId }) {
                 onClick={() => handleNotificationClick(`${notification.message} - ${notification.details}`)}
               >
                 <img
-                  src={notification.photo}
+                  src="https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg"
                   alt={notification.username}
                   className="follower-photo"
                 />
@@ -237,6 +238,40 @@ function Leftnav({ userId }) {
             ))}
           </div>
           <button onClick={closeNotificationDetails}>Close</button>
+        </div>
+      )}
+       {/* <div className="navlink" onClick={() => setShowSearchBar(!showSearchBar)}>
+        <SearchTwoToneIcon sx={{ fontSize: "30px", margin: "0px 10px" }} />
+        <div className="navName">Search</div>
+      </div> */}
+
+{showSearchBar && (
+        <div className="searchBarOverlay">
+          <div className="searchBar">
+            <input
+              type="text"
+              placeholder="Search username"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+            />
+            <button onClick={handleSearch}>Search</button>
+            <div className="searchResults">
+              {errorMessage && <p className="errorMessage">{errorMessage}</p>}
+              {searchResult && typeof searchResult === "string" ? (
+                <p>{searchResult}</p>
+              ) : searchResult ? (
+                <div className="userResult">
+                  <img
+                    src={searchResult.photoURL}
+                    alt={searchResult.username}
+                    className="userPhoto"
+                  />
+                  {console.log(searchResult.id)}
+                  <p onClick={() => navigate("/userprofile")}>{searchResult.name}</p>
+                </div>
+              ) : null}
+            </div>
+          </div>
         </div>
       )}
     </div>
