@@ -20,6 +20,11 @@
   padding: 20px;
   margin-left: 220px; 
 }
+.filter-options button.active-filter {
+  background-color: #4CAF50; /* You can change the color */
+  color: white;
+  font-weight: bold;
+}
 
 .filter-options {
   display: flex;
@@ -29,20 +34,20 @@
 }
 
 .filter-options button {
-  background-color: #3f51b5;
+  background-color: #2f2f30;
   color: #fff;
   border: none;
   padding: 10px 20px;
   margin: 5px;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 15px;
   transition: background-color 0.3s ease;
   flex: 1 1 auto;
   max-width: 200px;
 }
 
 .filter-options button:hover {
-  background-color: #303f9f;
+  background-color: #d0d1da;
 }
 
 @media (max-width: 600px) {
@@ -158,9 +163,30 @@
   .video-container {
     grid-template-columns: 1fr;
   }
+  .leftSidenav{
+    display: none;
+  }
 
   .video-item {
     max-width: 100%;
     margin: auto;
   }
+  .filter-options{
+   display: flex;
+   justify-content: space-between;
+   
+  }
+  .filter-options button {
+    background-color: #2f2f30;
+    color: #fff;
+    border: none;
+    /* padding: 10px 20px; */
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 15px;
+    transition: background-color 0.3s ease;
+    flex: 1 1 auto;
+    max-width: 200px;
+  }
+  
 }

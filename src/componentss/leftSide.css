@@ -163,8 +163,6 @@
   background-color: #0056b3;
 }
 
-
-
 .saved-videos-container {
   display: flex;
   flex-wrap: wrap;
@@ -182,26 +180,21 @@ video {
 }
 .drawer-option{
   cursor: pointer;
-  /* background-color: rgb(57, 52, 52); */
   box-shadow: #333;
   border-radius: 5px;
   margin-top: 5px;
   color: #fcf6f6;
-  /* border: 1px white; */
 
 }
 .drawer-option:hover{
-  /* font-size: x-large; */
-  /* background-color: #636262; */
   border-color: #b0a7a7;
   text-decoration: underline;
 }
 
 .drawer{
-  background-color:#333;
   box-shadow: #b0a7a7;
   border-radius: 5px;
-  padding: 10px;
+  
 }
 .daily-limit-options:hover{
   text-decoration: underline;
@@ -252,6 +245,7 @@ video {
   width: 100%;
   padding: 10px;
   margin-bottom: 10px;
+  margin-top: 10px;
   border: 1px solid #ccc;
   color: #007bff;
   border-radius: 5px;
@@ -260,7 +254,7 @@ video {
 .searchBar button {
   width: 100%;
   padding: 10px;
-  background: #007bff;
+  background: #506e9a;
   color: rgb(83, 70, 70);
   border: none;
   border-radius: 5px;
@@ -284,4 +278,13 @@ video {
 .errorMessage {
   color: red;
   font-size: 14px;
+}
+
+@media (max-width: 768px){
+  .leftSidepart{
+    font-size: 10px;
+  }
+  .navName{
+    font-size: 10px;
+  }
 }

@@ -10,15 +10,31 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import Home from "./componentss/home";
 import Vedios from "./uploaded/vedios";
-import { auth } from "./firebase/firebase";
+
 import useUser from "./useStore/userstore";
 
 import ChatRoom from "./Chatapplication/Chat/Chat"; 
 
 import SearchComponent from "./Searchuser/searchuser";
 import Chatbot from "./Chatbot/Chatbot";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase/firebase";
+import { useUserStore } from "./useStore/userstore";
+
 
 function App() {
+  const { currentUser, isLoading, fetchUserInfo } = useUserStore();
+
+  useEffect(() => {
+    const unSub = onAuthStateChanged(auth, (user) => {
+      fetchUserInfo(user?.uid);
+    });
+
+    return () => {
+      unSub();
+    };
+  }, [fetchUserInfo]);
+
 
   return (
     <>

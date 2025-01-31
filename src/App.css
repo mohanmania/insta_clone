@@ -1,36 +1,72 @@
 .App {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  /* border: 1px solid; */
   display: flex;
-  /* margin-top: 70px; */
+  /* position: relative; */
 }
 
 .leftSideHome {
-  flex: 0.17;
+  width: 250px; 
   margin-left: 20px;
-  border-right: 1px solid #262626;
 }
 
 .middileSide {
-  flex: 0.6;
-  width: 100%;
-  border-right: 1px solid #2f2e2e;
-
+  flex: 1;
+  border-left: 1px solid rgb(57, 55, 55);
 }
 
 .rightSide {
-  margin-top:3%;
-  flex: 0.3;
-  margin-left: 5%;
+ 
+  border-left: 1px solid rgb(63, 63, 63);
 }
 
-@media (max-width: 700px) {
+.toggle-button {
+  background: rgb(130, 126, 126);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  touch-action: none;
+}
+
+@media screen and (max-width: 768px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .toggle-button {
+    display: flex !important;
+  }
+
+  .leftSideHome {
+    position: fixed;
+    left: -250px;
+    width: 150px;
+    top: 0;
+    bottom: 0;
+    background: rgb(77, 76, 76);
+    z-index: 999;
+    transition: left 0.3s ease;
+  }
+
+  .leftSideHome.open {
+    left: 0;
+  }
+
   .rightSide {
-    display: none;
+   display: none;
   }
-  .leftSideHome{
-    display: none;
-  }
+}
+
+
+.leftSideHome.open::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(27, 26, 26, 0.5);
+  z-index: -1;
 }

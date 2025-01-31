@@ -229,6 +229,7 @@ function MiddileSide() {
             <Post/>
             <Post/>
             <Post/>
+            <Post/>
 
         </div>
     );

@@ -11,67 +11,7 @@ import { addDoc, collection, getDocs, query } from "firebase/firestore";
 import Leftnav from "../componentss/leftsidebar";
 
 const demoVideos = [
-  {
-    id: 1,
-    title: "Food Video",
-    category: "food",
-    src: "https://videos.pexels.com/video-files/854196/854196-hd_1920_1080_30fps.mp4",
-  },
-  {
-    id: 2,
-    title: "Food Video",
-    category: "food",
-    src: "https://videos.pexels.com/video-files/4253333/4253333-uhd_1440_2732_25fps.mp4",
-  },
-  {
-    id: 3,
-    title: "Food Video",
-    category: "food",
-    src: "https://videos.pexels.com/video-files/4253333/4253333-uhd_1440_2732_25fps.mp4",
-  },
-
-  {
-    id: 4,
-    title: "Food Video",
-    category: "food",
-    src: "https://videos.pexels.com/video-files/852122/852122-hd_1920_1080_30fps.mp4",
-  },
-  {
-    id: 5,
-    title: "Food Video",
-    category: "food",
-    src: "https://videos.pexels.com/video-files/855421/855421-hd_1920_1080_25fps.mp4",
-  },
-  {
-    id: 6,
-    title: "Food Video",
-    category: "food",
-    src: "https://videos.pexels.com/video-files/2758322/2758322-uhd_2560_1440_30fps.mp4",
-  },
-  {
-    id: 7,
-    title: "Food Video",
-    category: "food",
-    src: "https://videos.pexels.com/video-files/1908426/1908426-uhd_2560_1440_25fps.mp4",
-  },
-  {
-    id: 8,
-    title: "Food Video",
-    category: "food",
-    src: "https://videos.pexels.com/video-files/855922/855922-hd_1920_1080_25fps.mp4",
-  },
-  {
-    id: 9,
-    title: "Food Video",
-    category: "food",
-    src: " https://videos.pexels.com/video-files/854641/854641-hd_1920_1080_30fps.mp4",
-  },
-  {
-    id: 10,
-    title: "Food Video",
-    category: "food",
-    src: "https://videos.pexels.com/video-files/5752760/5752760-uhd_2560_1440_24fps.mp4",
-  },
+  
   {
     id: 11,
     title: "Food Video",
@@ -121,36 +61,15 @@ const demoVideos = [
     category: "sports",
     src: "https://www.w3schools.com/html/movie.mp4",
   },
+
+  
   {
     id: 8,
     title: "Sports Video",
     category: "sports",
     src: "https://www.w3schools.com/html/movie.mp4",
   },
-  {
-    id: 8,
-    title: "Sports Video",
-    category: "sports",
-    src: "https://www.w3schools.com/html/movie.mp4",
-  },
-  {
-    id: 8,
-    title: "Sports Video",
-    category: "sports",
-    src: "https://www.w3schools.com/html/movie.mp4",
-  },
-  {
-    id: 8,
-    title: "Sports Video",
-    category: "sports",
-    src: "https://www.w3schools.com/html/movie.mp4",
-  },
-  {
-    id: 8,
-    title: "Sports Video",
-    category: "sports",
-    src: "https://www.w3schools.com/html/movie.mp4",
-  },
+
   {
     id: 8,
     title: "Sports Video",
@@ -334,7 +253,7 @@ export default function Videos() {
       }
     };
 
-    // window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -346,15 +265,40 @@ export default function Videos() {
       
      <Leftnav/>
      </div>
-    <div className="main-div">
-      <div className="filter-options">
-        <button onClick={() => filterVideos("all")}>All</button>
-        <button onClick={() => filterVideos("food")}>Food</button>
-        <button onClick={() => filterVideos("sports")}>Sports</button>
-        <button onClick={() => filterVideos("songs")}>Songs</button>
-        <button onClick={() => filterVideos("comedy")}>Comedy</button>
-        <button onClick={fetchSavedVideos}>Saved Items</button>
-      </div>
+     <div className="main-div">
+        <div className="filter-options">
+          <button
+            onClick={() => filterVideos("all")}
+            className={selectedCategory === "all" ? "active-filter" : ""}
+          >
+            All
+          </button>
+          <button
+            onClick={() => filterVideos("food")}
+            className={selectedCategory === "food" ? "active-filter" : ""}
+          >
+            Food
+          </button>
+          <button
+            onClick={() => filterVideos("sports")}
+            className={selectedCategory === "sports" ? "active-filter" : ""}
+          >
+            Sports
+          </button>
+          <button
+            onClick={() => filterVideos("songs")}
+            className={selectedCategory === "songs" ? "active-filter" : ""}
+          >
+            Songs
+          </button>
+          <button
+            onClick={() => filterVideos("comedy")}
+            className={selectedCategory === "comedy" ? "active-filter" : ""}
+          >
+            Comedy
+          </button>
+          <button onClick={fetchSavedVideos}>Saved Items</button>
+        </div>
 
       {!isDoubleClicked ? (
         <div

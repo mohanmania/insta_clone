@@ -70,7 +70,7 @@ function Register() {
 
 
             message.success({ content: "Account created successfully!", duration: 2 });
-            navigate("/login");  
+            navigate("/");  
         } catch (error) {
             console.error("Error during registration: ", error);
             message.error({ content: error.message || "Error occurred. Try again!" });
@@ -94,7 +94,6 @@ function Register() {
                 <input type="date" name="dob" placeholder="Enter your Date of Birth" value={formData.dob} onChange={handleChange} required />
                 <input type="password" name="password" placeholder="Enter your password" value={formData.password} onChange={handleChange} required />
                 <Button type="primary" htmlType="submit">Submit</Button>
-                {/* <Button type="danger" oncClick = {()=> navigate("/home")}>guest</Button> */}
                 <p>Already have an account? <span style={{ textDecoration: "underline", color: "royalblue", cursor: "pointer" }} onClick={() => navigate("/")}>Login</span></p>
             </form>
         </div>

@@ -5,10 +5,13 @@ import React, { useState } from "react";
 import { Snackbar, Button } from "@mui/material";
 import "./rightcontainer.css";
 import { useNavigate } from "react-router-dom";
+import { useUserStore } from "../../useStore/userstore";
 import { 
    Dialog, DialogActions, DialogContent, 
   DialogContentText, DialogTitle, IconButton, Slide
 } from '@mui/material'; 
+
+
 
 export default function Rightnav() {
   const navigate = useNavigate()
@@ -17,6 +20,7 @@ export default function Rightnav() {
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
     const [openConfirm, setOpenConfirm] = useState(false);
+    const { currentUser} = useUserStore();
   
 
   const handleMouseEnter = (profile) => {
@@ -70,8 +74,8 @@ export default function Rightnav() {
             alt="Profile"
           />
           <div className="profile-details">
-            <span className="username">mohan_mania51</span>
-            <span className="status">m0han mania 51 :(((</span>
+            <span className="username">ghjk</span>
+            <span className="status">lkjvcx{Math.floor(Math.random()*91)}</span>
           </div>
         </div>
         <Button variant="contained" color="primary" onClick={handleLogout}>

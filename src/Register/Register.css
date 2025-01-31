@@ -58,7 +58,7 @@
     border-radius: 3px;
     background-color: #342d2d;
     font-size: 14px;
-    color: #262626;
+    /* color: #262626; */
 }
 
 .register-form input:focus {
@@ -129,7 +129,7 @@
 
 /* Style for date input */
 input[type="date"] {
-    color: #262626;
+    /* color: #262626; */
 }
 
 /* Add loading state styles for button */
