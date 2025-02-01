@@ -3,6 +3,8 @@
 
 .leftSidepart {
   position: fixed;
+  margin-top: 5px;
+  font-size: 1.2rem;
 }
 .logo h2{
   font-family: 'Pacifico', sans-serif;
@@ -30,8 +32,9 @@
 .navName {
   font-weight: 700;
   padding: 5px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
+
 .navlink {
   display: flex;
   height: 35px;
@@ -286,5 +289,14 @@ video {
   }
   .navName{
     font-size: 10px;
+    color: white
+  }
+  
+  
+  .navlink {
+    margin-top: 5px;
+  }
+  .logo{
+    display: none;
   }
 }

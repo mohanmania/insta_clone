@@ -1,21 +1,21 @@
 .App {
   display: flex;
-  /* position: relative; */
 }
 
 .leftSideHome {
-  width: 250px; 
-  margin-left: 20px;
+  width: 250px;
+  margin-left: 50px;
 }
 
 .middileSide {
-  flex: 1;
+  /* flex: 1; */
   border-left: 1px solid rgb(57, 55, 55);
 }
 
 .rightSide {
- 
-  border-left: 1px solid rgb(63, 63, 63);
+  /* border-left: 1px solid rgb(63, 63, 63); */
+  margin-left: 80px;
+  margin-top: 30px;
 }
 
 .toggle-button {
@@ -28,6 +28,23 @@
   justify-content: center;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   touch-action: none;
+  transition: background-color 0.3s ease;
+}
+
+.toggle-button.active {
+  background-color: #9a4e4e;
+  box-shadow: white;
+}
+@media screen and (max-width:1000px) and (min-width:768px){
+  .rightSide{
+    display: none;
+  }
+  .middileSide{
+    width:600px;
+  }
+  .leftSideHome{
+    flex: 0.78;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -39,34 +56,39 @@
     display: flex !important;
   }
 
-  .leftSideHome {
+  /* .leftSideHome {
     position: fixed;
     left: -250px;
     width: 150px;
-    top: 0;
+    top: 0;f7
     bottom: 0;
     background: rgb(77, 76, 76);
     z-index: 999;
     transition: left 0.3s ease;
-  }
+  } */
 
   .leftSideHome.open {
     left: 0;
   }
+.leftSideHome.open::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(27, 26, 26, 0.5);
+    z-index: -1;
+    overflow-y: auto;
+  } 
 
   .rightSide {
-   display: none;
+    display: none;
   }
-}
 
 
-.leftSideHome.open::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(27, 26, 26, 0.5);
-  z-index: -1;
+  .toggle-button.active {
+    background-color: #e84e4e;
+    box-shadow: 0 2px 8px rgba(236, 232, 232, 0.4);
+  }
 }

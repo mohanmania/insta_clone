@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import "./middile.css";
 import Post from "./post"
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
-
+import { useUserStore } from "../../useStore/userstore";
 function MiddileSide() {
     const [selectedStory, setSelectedStory] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -10,7 +10,7 @@ function MiddileSide() {
     const [isAtStart, setIsAtStart] = useState(true);
     const [isAtEnd, setIsAtEnd] = useState(false);
     const storyBlockRef = useRef(null);
-
+    // const {currentUser} = useUserStore()
     const stories = [
         {
             image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Mahesh_Babu_in_Spyder.jpg/800px-Mahesh_Babu_in_Spyder.jpg",
@@ -43,6 +43,14 @@ function MiddileSide() {
         {
             image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Mahesh_Babu_in_Spyder.jpg/800px-Mahesh_Babu_in_Spyder.jpg",
             username: "krishnanna"
+        },
+        {
+            image: "https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg",
+            username: "D..దుర్గ దుర్గ89"
+        },
+        {
+            image: "https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg",
+            username: "D..దుర్గ దుర్గ89"
         },
         {
             image: "https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg",

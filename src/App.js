@@ -1,6 +1,5 @@
 import React,{useEffect} from "react";
 import "./App.css";
-// import Chatlayout from "./Chatapplication/chatlayout/Chatlayout";
 import Login from "./componentss/Login/Login";
 import Register from "./Register/Register";
 import Leftnav from "./componentss/leftsidebar";

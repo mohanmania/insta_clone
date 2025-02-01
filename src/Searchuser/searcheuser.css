@@ -62,12 +62,13 @@
 }
 
 .follow-btn {
-  background-color: #0095f6;
-  color: #fff;
+  background-color: #92b6cd;
+  color: #252f30;
   border: none;
   border-radius: 4px;
   padding: 7px 16px;
   font-weight: 600;
+  width: 100px;
   cursor: pointer;
   transition: background-color 0.2s;
 }
@@ -77,7 +78,8 @@
 }
 
 .follow-btn:hover {
-  background-color: #1877f2;
+  background-color: #6a7649;
+  color: white;
 }
 
 .profile-bio {
@@ -192,6 +194,14 @@
   overflow-y: auto;
   max-height: calc(80vh - 60px);
 }
+.follow-btn.following{
+  background-color: green;
+  color: black;
+
+}
+.follow-btn.follow{
+  background-color: #262626;
+}
 
 .followers-list li {
   display: flex;
@@ -297,4 +307,74 @@
   width: 60px;
   height: 60px;
   margin-bottom: 10px;
+
+}
+
+
+.toggle-button {
+  background: rgb(130, 126, 126);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  touch-action: none;
+}
+
+@media screen and (max-width: 768px) {
+  .App {
+    flex-direction: column;
+  }
+  .posts{
+    display: flex;
+    flex-wrap: nowrap;
+    img{
+      width: 100px;
+      height: 100px;
+      border:1px solid white;
+      &:hover{
+        z-index: 1;
+        width: 250px;
+        height: 250px;
+      }
+    }
+  }
+
+  .toggle-button {
+    display: flex !important;
+  }
+
+  .leftSideHome {
+    position: fixed;
+    left: -250px;
+    width: 150px;
+    top: 0;
+    bottom: 0;
+    background: rgb(77, 76, 76);
+    z-index: 999;
+    transition: left 0.3s ease;
+  }
+
+  .leftSideHome.open {
+    left: 0;
+  }
+
+  .rightSide {
+   display: none;
+  }
+}
+
+
+.leftSideHome.open::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  color: rgb(169, 138, 138);
+  background: rgba(27, 26, 26, 0.5);
+  z-index: -1;
 }

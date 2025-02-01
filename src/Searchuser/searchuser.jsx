@@ -1,13 +1,16 @@
 
 
 // InstagramProfile.js
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import './searcheuser.css';
 import FaceIcon from '@mui/icons-material/Face';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import CakeIcon from '@mui/icons-material/Cake';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import Leftnav from '../componentss/leftsidebar';
+import { Menu } from 'lucide-react'; 
+import { message } from 'antd';
+
 
 
 const followers = [
@@ -39,12 +42,99 @@ const InstagramProfile = () => {
   const [notification, setNotification] = useState('');
   const [showFollowers, setShowFollowers] = useState(false);
   const [followingStatus, setFollowingStatus] = useState({});
+   const [isLeftNavOpen, setIsLeftNavOpen] = useState(false);
+       const [position, setPosition] = useState({ x: 20, y: 20 });
+       const [isDragging, setIsDragging] = useState(false);
+       const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+       const [isActive, setIsActive] = useState(false);
+     
+       useEffect(() => {
+       
+         if (isDragging) {
+           document.addEventListener('mousemove', handleMouseMove);
+           document.addEventListener('mouseup', handleMouseUp);
+           document.addEventListener('touchmove', handleTouchMove);
+           document.addEventListener('touchend', handleMouseUp);
+         }
+     
+         return () => {
+           document.removeEventListener('mousemove', handleMouseMove);
+           document.removeEventListener('mouseup', handleMouseUp);
+           document.removeEventListener('touchmove', handleTouchMove);
+           document.removeEventListener('touchend', handleMouseUp);
+         };
+       }, [isDragging]);
+     
+      
+       const handleMouseDown = (e) => {
+         e.preventDefault();
+         setIsDragging(true);
+         setDragOffset({
+           x: e.clientX - position.x,
+           y: e.clientY - position.y
+         });
+       };
+     
+  
+       const handleMouseMove = (e) => {
+         if (isDragging) {
+           e.preventDefault();
+           const newX = e.clientX - dragOffset.x;
+           const newY = e.clientY - dragOffset.y;
+           
+          
+           const maxX = window.innerWidth - 50;
+           const maxY = window.innerHeight - 50;
+           
+           setPosition({
+             x: Math.min(Math.max(0, newX), maxX),
+             y: Math.min(Math.max(0, newY), maxY)
+           });
+         }
+       };
+     
+    
+       const handleMouseUp = () => {
+         setIsDragging(false);
+       };
+     
+ 
+       const handleTouchStart = (e) => {
+         const touch = e.touches[0];
+         handleMouseDown({ 
+           preventDefault: () => e.preventDefault(),
+           clientX: touch.clientX, 
+           clientY: touch.clientY 
+         });
+       };
+     
+       const handleTouchMove = (e) => {
+         const touch = e.touches[0];
+         handleMouseMove({ 
+           preventDefault: () => e.preventDefault(),
+           clientX: touch.clientX, 
+           clientY: touch.clientY 
+         });
+       };
+     
+       const handleToggleClick = (e) => {
+         if (!isDragging) {
+           setIsLeftNavOpen(!isLeftNavOpen);
+           setIsActive(!isActive);
+         }
+       };
+     
+   
 
-  const handleFollow = () => {
-    setIsFollowing(true);
-    setNotification('You started following krishna');
-    setTimeout(() => setNotification(''), 3000);
-  };
+       const handleFollow = () => {
+        if (isFollowing) {
+          setIsFollowing(false);
+          message.loading("You unfollowed ");
+        } else {
+          setIsFollowing(true);
+          message.success("You started following ");
+        }
+      };
 
   const handleShowFollowers = () => {
     setShowFollowers(true);
@@ -67,18 +157,42 @@ const InstagramProfile = () => {
 
   return (
     <div style={{ display: "flex" }}>
-     <div style={{position:"fixed"}}>
-     <Leftnav />
-     </div>
+       <div
+           className={`toggle-button ${isActive ? 'active' : ''}`}
+           style={{
+             position: 'fixed',
+             left: `${position.x}px`,
+             top: `${position.y}px`,
+             zIndex: 1000,
+             cursor: isDragging ? 'grabbing' : 'grab',
+             display: 'none',
+           }}
+           onMouseDown={handleMouseDown}
+           onTouchStart={handleTouchStart}
+           onClick={handleToggleClick}
+         >
+           <Menu size={24} color={isActive ? "white" : "currentColor"} />
+         </div>
+         <div className={`leftSideHome ${isLeftNavOpen ? 'open' : ''}`}>
+        <Leftnav />
+      </div>
+  
       <div className="profile-container">
-        <div className="profile-header" style={{cursor:"pointer"}}>
-          <div className="profile-pic">
-            <img src="https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg" alt="Profile" />
-          </div>
-          <h2 className="profile-name">krishna</h2>
-          <button onClick={handleFollow} className={`follow-btn ${isFollowing ? 'following' : ''}`} disabled={isFollowing}>
-            {isFollowing ? 'Following' : 'Follow'}
-          </button>
+      <div className="profile-header" style={{ cursor: "pointer" }}>
+        <div className="profile-pic">
+          <img
+            src="https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg"
+            alt="Profile"
+          />
+        </div>
+        <h2 className="profile-name">Krishna</h2>
+        <button
+          onClick={handleFollow}
+          className={`follow-btn ${isFollowing ? "following" : ""}`}
+        >
+          {isFollowing ? "Following" : "Follow"}
+        </button>
+
           <div className="profile-stats">
             <div>Posts: 3</div>
             <div><button onClick={handleShowFollowers} className="followers-button">Followers: 90</button></div>

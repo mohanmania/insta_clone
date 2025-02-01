@@ -321,6 +321,7 @@ import {
   Button, Dialog, DialogActions, DialogContent, 
   DialogContentText, DialogTitle, IconButton, Slide
 } from '@mui/material'; 
+import { message } from "antd";
 export const SearchUserProvider = createContext();
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -443,15 +444,15 @@ function Leftnav({ userId }) {
           <div className="navName">Search</div>
         </div>
         <div className="navlink" onClick={() => navigate("/reels")}>
-          <PlayArrowIcon sx={{ fontSize: "30px", margin: "0px 10px" }} />
+          <PlayArrowIcon sx={{ fontSize: "33px", margin: "0px 10px" }} />
           <div className="navName">Feed</div>
         </div>
         <div className="navlink" onClick={() => navigate("/message")}>
-          <MessageOutlinedIcon sx={{ fontSize: "30px", margin: "0px 10px" }} />
+          <MessageOutlinedIcon sx={{ fontSize: "25px", margin: "0px 10px" }} />
           <div className="navName">Messages</div>
         </div>
         <div className="navlink" onClick={() => handleNotificationClick('Sample Notification Content')}>
-          <FavoriteBorderRoundedIcon sx={{ fontSize: "30px", margin: "0px 10px" }} />
+          <FavoriteBorderRoundedIcon sx={{ fontSize: "27px", margin: "0px 10px" }} />
           <div className="navName">Notifications</div>
         </div>
         <div className="navlink" onClick={()=> navigate("/help")}>
@@ -460,7 +461,7 @@ function Leftnav({ userId }) {
         </div>
         <div className="navlink" onClick={() => navigate("/userprofile")} style={{marginLeft:"15px"}}>
           <Avatar alt="Profile" src="https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg" sx={{ width: 24, height: 24 }} />
-          <div className="navName">Profile</div>
+          <div className="navName" style={{marginLeft:"10px"}}>Profile</div>
         </div>
         <div className="navlink" onClick={() => setShowDrawer(!showDrawer)}>
           <MenuIcon sx={{ fontSize: "30px", margin: "0px 10px" }} />
@@ -471,7 +472,7 @@ function Leftnav({ userId }) {
 
       {showDrawer && (
         <div className={`drawer ${showDrawer ? 'open' : ''}`} style={{cursor:"pointer"}}>
-          <div className="navlink">
+          <div className="navlink" onClick={()=> navigate("/")}>
             <LogoutIcon sx={{fontSize:"25px", margin:"0px 10px"}}/>
           <div className="drawer-option" onClick={handleLogout}>Logout</div>
 

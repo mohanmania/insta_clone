@@ -2,3 +2,82 @@ body{
   background-color: rgb(34, 33, 33);
   color: white;
 }
+
+
+.toggle-button {
+  background: linear-gradient(45deg, #007bff, #0056b3);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  touch-action: none;
+}
+
+.toggle-button.active {
+  background: linear-gradient(45deg, #e1d9dceb, #c03149); /* Pink Gradient */
+  color: rgb(58, 55, 55);
+}
+
+
+
+@media screen and (max-width: 600px) {
+  .App {
+    flex-direction: column;
+  }
+
+  .toggle-button {
+    display: flex !important;
+  }
+/* 
+  .leftSideHome {
+    display: block;
+    position: fixed;
+    left: -250px;
+    width: 150px;
+    top: 0;
+    bottom: 0;
+    background-color: #333;
+
+    z-index: 999;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+  } */
+
+  .leftSideHome.open {
+    left: 0;
+    top: 230px;
+    padding-top: 5px;
+    overflow: scroll;
+    bottom: 90px;
+ 
+    background-color: rgba(0, 0, 0, 0.5);
+    border-color: #ddd;
+    border-radius: 15px;
+    font-weight: 700;
+    
+  }
+  .leftSideHome.open::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rightSide {
+   display: none;
+  }
+}
+
+
+/* 
+.leftSideHome.open::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(55, 54, 54, 0.5);
+  z-index: -1;
+  overflow:scroll;
+} */

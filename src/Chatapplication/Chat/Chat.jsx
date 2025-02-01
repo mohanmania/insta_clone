@@ -401,6 +401,8 @@
 
 import React, { useState, useEffect } from "react";
 import { db, auth } from "../../firebase/firebase";
+import Leftnav from "../../componentss/leftsidebar";
+import { Menu } from "lucide-react";
 import {
   collection,
   addDoc,
@@ -436,7 +438,54 @@ const ChatRoom = () => {
     message: "",
     severity: "",
   });
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+  const [showEmojiPicker, setShowEmojiPicker] = useState(false);const [isLeftNavOpen, setIsLeftNavOpen] = useState(false);
+  const [position, setPosition] = useState({ x: 20, y: 20 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+
+  
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setDragOffset({
+      x: e.clientX - position.x,
+      y: e.clientY - position.y
+    });
+  };
+
+  // Handle dragging
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      const newX = e.clientX - dragOffset.x;
+      const newY = e.clientY - dragOffset.y;
+      
+     
+      const maxX = window.innerWidth - 50;
+      const maxY = window.innerHeight - 50;
+      
+      setPosition({
+        x: Math.min(Math.max(0, newX), maxX),
+        y: Math.min(Math.max(0, newY), maxY)
+      });
+    }
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0];
+    handleMouseDown({ clientX: touch.clientX, clientY: touch.clientY });
+  };
+
+  const handleTouchMove = (e) => {
+    const touch = e.touches[0];
+    handleMouseMove({ clientX: touch.clientX, clientY: touch.clientY });
+  };
+
+ 
+    
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -569,6 +618,29 @@ const ChatRoom = () => {
 
   return (
     <div className="main-container">
+        <div
+        className="toggle-button"
+        style={{
+          position: 'fixed',
+          left: `${position.x}px`,
+          top: `${position.y}px`,
+          zIndex: 1000,
+          cursor: 'move',
+          display: 'none', 
+        }}
+        onMouseDown={handleMouseDown}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleMouseUp}
+        onClick={() => setIsLeftNavOpen(!isLeftNavOpen)}
+      >
+        <Menu size={24} />
+      </div>
+
+     
+      <div className={`leftSideHome ${isLeftNavOpen ? 'open' : ''}`}>
+        <Leftnav />
+      </div>
     <div className="chatroom-container">
       <div className="sidebar">
         <h3>Rooms</h3>
