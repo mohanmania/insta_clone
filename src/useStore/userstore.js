@@ -19,6 +19,8 @@ export const useUserStore = create((set) => ({
 
       if (docSnap.exists()) {
         console.log("User found:", docSnap.data());
+        console.log("User found:", docSnap.data().photoURL);
+
         set({ currentUser: docSnap.data(), isLoading: false });
       } else {
         console.log("User document does not exist.");

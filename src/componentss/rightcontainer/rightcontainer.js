@@ -74,8 +74,8 @@ export default function Rightnav() {
             alt="Profile"
           />
           <div className="profile-details">
-            <span className="username">ghjk</span>
-            <span className="status">lkjvcx{Math.floor(Math.random()*91)}</span>
+            <span className="username">{currentUser?.name||"Guest-Login"}</span>
+            <span className="status">{currentUser?.name||"Guest-Login"}</span>
           </div>
         </div>
         <Button variant="contained" color="primary" onClick={handleLogout}>

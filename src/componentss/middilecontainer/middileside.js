@@ -1,20 +1,79 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./middile.css";
-import Post from "./post"
+import Post from "./post";
+import { getStorage, ref, getDownloadURL,uploadBytes} from "firebase/storage";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import{db,auth} from "../../firebase/firebase"
+
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useUserStore } from "../../useStore/userstore";
+
 function MiddileSide() {
     const [selectedStory, setSelectedStory] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [progress, setProgress] = useState(0);
     const [isAtStart, setIsAtStart] = useState(true);
     const [isAtEnd, setIsAtEnd] = useState(false);
-    const storyBlockRef = useRef(null);
-    // const {currentUser} = useUserStore()
+    const [imageUrl, setImageUrl] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const { currentUser } = useUserStore();
+
+const storage = getStorage();
+const storyBlockRef = useRef(null);
+
+  
+const defaultImage = "https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg";
+const defaultUsername = "Guest-Login";
+
+useEffect(() => {
+    const fetchUserImage = async () => {
+        try {
+            const userId = auth.currentUser?.uid;
+            if (!userId) return;
+
+            const imageRef = ref(storage, `users/${userId}/profile.jpg`);
+            const imageURL = await getDownloadURL(imageRef); // Get the download URL
+
+            setImageUrl(imageURL); // Set the URL to the state
+        } catch (error) {
+            console.error("Error fetching image:", error);
+            setImageUrl(defaultImage); // fallback image
+        }
+    };
+    fetchUserImage();
+}, []);
+
+  const handleStoryClick = (index) => {
+    setSelectedStory(index);
+    setProgress(0);
+    setIsAtStart(true);
+    setIsAtEnd(false);
+  };
+
+  const handleNext = () => {
+    if (currentIndex < stories.length - 1) {
+      setCurrentIndex(prev => prev + 1);
+      setProgress(0);
+      setIsAtStart(false);
+    } else {
+      setIsAtEnd(true);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(prev => prev - 1);
+      setProgress(0);
+      setIsAtEnd(false);
+    } else {
+      setIsAtStart(true);
+    }
+  };
     const stories = [
         {
-            image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Mahesh_Babu_in_Spyder.jpg/800px-Mahesh_Babu_in_Spyder.jpg",
-            username: "mahesh"
+            image: imageUrl || defaultImage,
+            username: currentUser?.name || defaultUsername
         },
         {
             image: "https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg",
@@ -58,7 +117,7 @@ function MiddileSide() {
         }
     ];
 
-    // Scroll carousel
+  
     const scroll = (direction) => {
       if (storyBlockRef.current) {
           const scrollAmount = direction === 'left' ? -300 : 300; // Adjust for responsiveness

@@ -158,6 +158,13 @@
     .storyParticular {
         min-width: 70px;
     }
+    
+
+.storyBlock {
+     
+    margin-left: 10px;
+}
+
 
     .imagediv {
         width: 70px;

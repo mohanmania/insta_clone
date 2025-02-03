@@ -492,9 +492,10 @@ function Leftnav({ userId }) {
            <strong>Daily Limit</strong>
             </div>
             <div className="daily-limit-options">
-              <Button onClick={() => handleDailyLimitChange(10000)}>10 seconds</Button>
+              <Button onClick={() => handleDailyLimitChange(5000)}>5 seconds</Button>
               <Button onClick={() => handleDailyLimitChange(600000)}>10 minutes</Button>
               <Button onClick={() => handleDailyLimitChange(1800000)}>30 minutes</Button>
+              <Button onClick={()=> handleDailyLimitChange(1000000)}>1 Hour</Button>
             </div>
           </div>
         </div>

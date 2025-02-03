@@ -8,6 +8,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { db } from "../../firebase/firebase"; // Firebase setup
 import { collection, addDoc, doc, setDoc } from "firebase/firestore"; // Firebase Firestore imports
 import "./post.css";
+import { message } from "antd";
 
 
 const followers = [
@@ -145,6 +146,7 @@ export default function Post() {
       user: randomUser.username,
       timestamp: new Date(),
     });
+    message.info("saved successuffly")
     setIsPostSaved(true);
   };
 
@@ -176,7 +178,7 @@ export default function Post() {
           )}
         </div>
 
-        <div className="post-Icon-Blocks" style={{ height: "35px",backgroundColor:"rgb(122, 105, 105)"}}>
+        <div className="post-Icon-Blocks" style={{ height: "40px",backgroundColor:"rgb(34, 33, 33)"}}>
           <div className="leftIcon">
             {liked ? (
               <FavoriteIcon onClick={handleLikeClick} style={{ color: "red", cursor: "pointer" }} />
@@ -192,7 +194,7 @@ export default function Post() {
               style={{ cursor: "pointer" }}
               onClick={handleSavePost}
             />
-            <span>{isPostSaved ? "Saved" : "Save"}</span>
+            <span >{isPostSaved ? "Saved" : "Save"}</span>
             <ShareOutlinedIcon onClick={handleShareClick} style={{ cursor: "pointer" }} />
           </div>
         </div>
@@ -221,7 +223,7 @@ export default function Post() {
               {comments.map((comment, index) => (
                 <div key={index} className="commentItem">
                   <div>{comment.username}: {comment.comment}</div>
-                  <button onClick={() => handleDeleteComment(index)}>Delete</button>
+                  <button onClick={() => handleDeleteComment(index)} >Delete</button>
                 </div>
               ))}
             </div>

@@ -420,6 +420,9 @@ import { storage } from "../../firebase/firebase";
 import { Snackbar, Alert } from "@mui/material";
 import EmojiPicker from "emoji-picker-react";
 import "./Chat.css";
+import { useUserStore } from "../../useStore/userstore";
+
+// import { useStore } from "zustand";
 
 const ChatRoom = () => {
   const [message, setMessage] = useState("");
@@ -442,6 +445,7 @@ const ChatRoom = () => {
   const [position, setPosition] = useState({ x: 20, y: 20 });
   const [isDragging, setIsDragging] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+    const { currentUser } = useUserStore();
 
   
   const handleMouseDown = (e) => {
@@ -618,6 +622,7 @@ const ChatRoom = () => {
 
   return (
     <div className="main-container">
+
         <div
         className="toggle-button"
         style={{
@@ -642,6 +647,7 @@ const ChatRoom = () => {
         <Leftnav />
       </div>
     <div className="chatroom-container">
+     
       <div className="sidebar">
         <h3>Rooms</h3>
         <ul>
@@ -654,6 +660,7 @@ const ChatRoom = () => {
       </div>
 
       <div className="chat-content">
+      <h2  style={{color:"red" ,justifyContent:"center",alignItems:"center"}}>{currentUser?.name|| "Guest-Login"}'s..Room</h2>
         <div className="create-room">
           <input
             type="text"
@@ -685,13 +692,13 @@ const ChatRoom = () => {
           <div className="username-prompt">
             <input
               type="text"
-              placeholder="Enter Username"
+              placeholder="Ex: Mybatch"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             <input
               type="password"
-              placeholder="Enter Password"
+              placeholder="****"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -699,7 +706,7 @@ const ChatRoom = () => {
               onClick={handleCreateRoom}
               disabled={!username || !password}
             >
-              join Room
+              Create
             </button>
           </div>
         )}
@@ -719,7 +726,7 @@ const ChatRoom = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <button onClick={handleJoinRoom} disabled={!username || !password}>
-              Join Room
+              Join 
             </button>
           </div>
         )}
@@ -765,7 +772,7 @@ const ChatRoom = () => {
               <label style={{color:"black"}}>Message Expiry Time:</label>
               <select onChange={(e) => setExpiryTime(Number(e.target.value))}>
                 <option value="">Select</option>
-                <option value={10}>10 seconds</option>
+                <option value={5}>5 seconds</option>
                 <option value={3600}>1 hour</option>
                 <option value={86400}>24 hours</option>
               </select>
