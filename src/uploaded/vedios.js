@@ -51,46 +51,135 @@ const demoVideos = [
     id: 8,
     title: "Sports Video",
     category: "sports",
-    src: "https://www.w3schools.com/html/movie.mp4",
+    src: "https://videos.pexels.com/video-files/6767183/6767183-uhd_2560_1440_25fps.mp4",
   },
   {
     id: 8,
     title: "Sports Video",
     category: "sports",
-    src: "https://www.w3schools.com/html/movie.mp4",
+    src: "https://videos.pexels.com/video-files/6765432/6765432-uhd_2560_1440_25fps.mp4",
   },
   {
     id: 8,
     title: "Sports Video",
     category: "sports",
-    src: "https://www.w3schools.com/html/movie.mp4",
-  },
-
-  {
-    id: 8,
-    title: "Sports Video",
-    category: "sports",
-    src: "https://www.w3schools.com/html/movie.mp4",
+    src: "https://images.pexels.com/photos/5467332/pexels-photo-5467332.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
   },
 
   {
     id: 8,
     title: "Sports Video",
     category: "sports",
-    src: "https://www.w3schools.com/html/movie.mp4",
+    src: "https://videos.pexels.com/video-files/6084016/6084016-uhd_2560_1440_25fps.mp4",
+  },
+
+  {
+    id: 8,
+    title: "Sports Video",
+    category: "sports",
+    src: "https://videos.pexels.com/video-files/3694921/3694921-uhd_1440_2560_30fps.mp4",
   },
 
   {
     id: 3,
     title: "Song Video",
     category: "songs",
-    src: "https://www.w3schools.com/html/movie.mp4",
+    src: "https://videos.pexels.com/video-files/852360/852360-hd_1280_720_30fps.mp4",
   },
   {
     id: 4,
-    title: "Comedy Video",
+    title: "Song Video",
+    category: "songs",
+    src: " https://videos.pexels.com/video-files/29666464/12761575_1080_1920_60fps.mp4",
+  },
+  {
+    id: 5,
+    title: "Song Video",
+    category: "songs",
+    src: " https://videos.pexels.com/video-files/4553973/4553973-hd_1080_1920_30fps.mp4",
+  }, {
+    id: 6,
+    title: "Song Video",
+    category: "songs",
+    src: " https://videos.pexels.com/video-files/7424211/7424211-uhd_1440_2560_30fps.mp4",
+  }, {
+    id: 7,
+    title: "Song Video",
+    category: "songs",
+    src: " https://videos.pexels.com/video-files/8005852/8005852-uhd_1440_2560_25fps.mp4",
+  }, {
+    id: 8,
+    title: "Song Video",
+    category: "songs",
+    src: " https://videos.pexels.com/video-files/7976325/7976325-uhd_1440_2732_25fps.mp4",
+  }, {
+    id: 9,
+    title: "Song Video",
+    category: "songs",
+    src: " https://videos.pexels.com/video-files/8929377/8929377-hd_1080_1920_30fps.mp4",
+  }, {
+    id: 10,
+    title: "Song Video",
+    category: "songs",
+    src: "https://videos.pexels.com/video-files/4540338/4540338-uhd_1440_2560_25fps.mp4",
+  }, {
+    id: 11,
+    title: "Song Video",
+    category: "songs",
+    src: " https://videos.pexels.com/video-files/8928294/8928294-hd_1080_1920_30fps.mp4",
+  }, {
+    id: 12,
+    title: "Song Video",
+    category: "songs",
+    src: " https://videos.pexels.com/video-files/8688886/8688886-hd_1080_1920_25fps.mp4",
+  }, 
+ 
+  {
+    id: 1,
+    title: "Design",
     category: "comedy",
-    src: "https://www.w3schools.com/html/movie.mp4",
+    src: "https://videos.pexels.com/video-files/4124189/4124189-uhd_2732_1440_25fps.mp4",
+  },
+  {
+    id: 2,
+    title: "Design",
+    category: "comedy",
+    src: "https://videos.pexels.com/video-files/2802070/2802070-uhd_2560_1440_30fps.mp4",
+  },
+  {
+    id: 3,
+    title: "Design",
+    category: "comedy",
+    src: "https://videos.pexels.com/video-files/852423/852423-hd_1920_1080_24fps.mp4",
+  },
+  {
+    id: 4,
+    title: "Design",
+    category: "comedy",
+    src: "https://videos.pexels.com/video-files/1722882/1722882-uhd_2560_1440_25fps.mp4",
+  },
+  {
+    id: 5,
+    title: "Design",
+    category: "comedy",
+    src: "https://videos.pexels.com/video-files/10866367/10866367-hd_1920_1080_24fps.mp4",
+  },
+  {
+    id: 6,
+    title: "Design",
+    category: "comedy",
+    src: "https://videos.pexels.com/video-files/1722882/1722882-uhd_2560_1440_25fps.mp4",
+  },
+  {
+    id: 7,
+    title: "Design",
+    category: "comedy",
+    src: "https://videos.pexels.com/video-files/3687560/3687560-uhd_1440_2560_30fps.mp4",
+  }, {
+    id: 8,
+    title: "Design",
+    category: "comedy",
+    src: "https://videos.pexels.com/video-files/2084684/2084684-uhd_2560_1440_30fps.mp4",
   },
 ];
 
@@ -414,13 +503,16 @@ export default function Videos() {
             Songs
           </button>
           <button
-            onClick={() => filterVideos("comedy")}
-            className={selectedCategory === "comedy" ? "active-filter" : ""}
+            onClick={() => filterVideos("design")}
+            className={selectedCategory === "design" ? "active-filter" : ""}
           >
             Comedy
           </button>
-          <button onClick={fetchSavedVideos}>Saved Items</button>
+          <button onClick={()=>filterVideos("saved")}
+          className={selectedCategory==="saved Items"?"active-filter":""}>Saved Items</button>
         </div>
+      
+
 
         {!isDoubleClicked ? (
           <div
@@ -504,7 +596,7 @@ export default function Videos() {
           </div>
         )}
 
-        <div className="saved-videos-section">
+        <div className="saved-videos-section"   style={{ marginTop: "20px", borderTop: "2px solid black", paddingTop: "10px" }}>
           <h2>Saved Items</h2>
           <div className="saved-videos-container">
             {savedVideos.map((video, index) => (

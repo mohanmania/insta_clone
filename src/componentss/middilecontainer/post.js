@@ -9,6 +9,7 @@ import { db } from "../../firebase/firebase"; // Firebase setup
 import { collection, addDoc, doc, setDoc } from "firebase/firestore"; // Firebase Firestore imports
 import "./post.css";
 import { message } from "antd";
+import { Loader2 } from 'lucide-react';
 
 
 const followers = [
@@ -30,7 +31,6 @@ const followers = [
   { username: 'dad_litle-priyas  ', photo: 'https://media.istockphoto.com/id/1313390800/photo/multiple-exposure-of-young-man-and-nature.jpg?s=2048x2048&w=is&k=20&c=BjQsumF29u57nnQhub5RV0H_c-Ai8nOBY83IR9sVlac=' },
   { username: 'ParshuBaby_23  ', photo: 'https://cdn.pixabay.com/photo/2016/03/27/19/20/indian-1283789_1280.jpg' },
 ];
-
 
 
 const postImages = [
@@ -60,7 +60,6 @@ const postImages = [
   "https://chaibisket.com/wp-content/uploads/2021/05/have-this2-1.jpg",
   "https://i.pinimg.com/originals/66/74/e4/6674e49af28265801818a9a6a2934382.jpg",
   "https://i.redd.it/rki51qch1kcz.jpg",
-  "https://i.pinimg.com/736x/1b/81/35/1b8135fa69726ee7f7877ecca9a3b852.jpg",
   "https://i.ytimg.com/vi/7RTwsc1YKqE/maxresdefault.jpg",
   "https://i.pinimg.com/736x/97/c5/24/97c5248ca57116ee4a1f513acec9be11.jpg",
   "https://external-preview.redd.it/Fbq8N6Q2AgX8axQeuwy_uYuzk6iWl0Vzi0fGXbEKexc.jpg?auto=webp&s=9d256612f40848bd0054ab56ced947381a3fc4ea",
@@ -79,12 +78,27 @@ const postImages = [
   "https://telugu.cdn.zeenews.com/telugu/sites/default/files/Telugu-Rakshabandhan-Memes13.jpg",
   "https://i.ytimg.com/vi/DJpLpUizOWw/maxres2.jpg?sqp=-oaymwEoCIAKENAF8quKqQMcGADwAQH4Ac4FgAKACooCDAgAEAEYZSBlKFEwDw==&rs=AOn4CLCLJ8HjLGlrnw2HqkYLC-t5pIVRYA",
   "https://i.pinimg.com/originals/61/b7/04/61b70491d0f62f6874def7f8671aefea.jpg",
-  "https://i.imgflip.com/5hy5je.jpg"
+  "https://i.imgflip.com/5hy5je.jpg",
+  "https://i.pinimg.com/originals/43/ed/0a/43ed0addb5c6646255abfe6b6f97961a.jpg",
+  "https://1.bp.blogspot.com/-TtRxUuubBps/XxPR_6m1UAI/AAAAAAAAKuw/Yw4igvoka3E-IsWlDb8U_zxVmgVdsvhXwCLcBGAsYHQ/s2048/eiB2CVE33528.jpg",
+  "https://i.pinimg.com/736x/af/5d/e6/af5de62119fb51783789383fc6d8c42a.jpg",
+  "https://opt.toiimg.com/recuperator/img/toi/m-71644737/71644737.jpg&width=500&resizemode=4",
+  "https://i.pinimg.com/originals/a1/ad/03/a1ad03fc2f7e25a68e30c10ed46a28a6.jpg",
+  "https://i.pinimg.com/736x/0e/9d/cb/0e9dcb3d79aee91f15ec128f34f318a0.jpg",
+  "https://i.pinimg.com/736x/28/5f/9f/285f9f12a7ca8d8e8a3d40cf8e3762a6.jpg",
+  "https://i.pinimg.com/originals/c6/31/eb/c631eb9bd0227af96b3ff430c060fb5b.jpg",
+  "https://i.pinimg.com/originals/7c/3c/31/7c3c315b054d67f962751e9da4a022cb.jpg",
+  "https://i.pinimg.com/736x/f2/b9/0d/f2b90dd81edce25a58a3922f95b093ed.jpg",
+  "https://i.pinimg.com/736x/1b/81/35/1b8135fa69726ee7f7877ecca9a3b852.jpg"
+
  
 ];
 const postVideos = [
-  "https://www.w3schools.com/html/movie.mp4", 
-  // Add more video URLs here...
+  "https://videos.pexels.com/video-files/3121459/3121459-uhd_2560_1440_24fps.mp4", 
+  "https://videos.pexels.com/video-files/8053662/8053662-uhd_1440_2560_25fps.mp4",
+  "https://i.pinimg.com/736x/1b/81/35/1b8135fa69726ee7f7877ecca9a3b852.jpg",
+  "https://videos.pexels.com/video-files/8928294/8928294-hd_1080_1920_30fps.mp4",
+  "https://media.istockphoto.com/id/1213507276/video/early-morning-sun-rises-on-the-path-of-the-brooklyn-bridge-over-the-east-river-connecting.mp4?s=mp4-640x640-is&k=20&c=Dy2Y46vQIroHLr4cO4AIX31MOyd3qUUusxHOOIqSCaE="
 ];
 
 
@@ -100,6 +114,17 @@ export default function Post() {
   const [isPostSaved, setIsPostSaved] = useState(false);
   const [showUserList, setShowUserList] = useState(false);
   const [isCommenting, setIsCommenting] = useState(false); 
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(true);
+
+  const handleLoad = () => {
+    setIsLoading(false);
+  };
+
+  const handleError = () => {
+    setIsLoading(false);
+    setHasError(true);
+  };
 
   useEffect(() => {
     setRandomUser(followers[Math.floor(Math.random() * followers.length)]);
@@ -129,7 +154,7 @@ export default function Post() {
         timestamp: new Date(),
       });
       setComments([...comments, { username: randomUser.username, comment: newComment }]);
-      // setNewComment(""); 
+      setNewComment(""); 
     }
   };
 
@@ -164,19 +189,42 @@ export default function Post() {
         <div className="postinfo">
           <img className="profileInfoimg" src={randomUser.photo} alt="Profile" />
           <div className="postInfoUserName">{randomUser.username}</div>
-          <div className="timingInfo">..{Math.floor(Math.random() * 60)}min</div>
         </div>
 
-        <div className="postImg">
-          {randomPostContent.endsWith(".mp4") ? (
-            <video className="post-video" autoPlay loop>
-              <source src={randomPostContent} type="video/mp4" />
-              Your browser does not support the video 
-            </video>
-          ) : (
-            <img className="post-img" src={randomPostContent} alt="Post" />
-          )}
+        <div className="postImg relative">
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+          <Loader2 className="w-8 h-8 animate-spin text-gray-500" />
         </div>
+      )}
+      
+      {randomPostContent.endsWith('.mp4') ? (
+        <video 
+          className={`post-video w-full ${isLoading ? 'hidden' : 'block'}`}
+          autoPlay 
+          loop 
+          onLoadedData={handleLoad}
+          onError={handleError}
+        >
+          <source src={randomPostContent} type="video/mp4" />
+          Your browser does not support the video
+        </video>
+      ) : (
+        <img
+          className={`post-img w-full ${isLoading ? 'hidden' : 'block'}`}
+          src={randomPostContent?randomPostContent:"Loading..."}
+          alt="Post"
+          onLoad={handleLoad}
+          onError={handleError}
+        />
+      )}
+
+      {!hasError && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-100">
+          <p className="text-gray-500">Failed to load media</p>
+        </div>
+      )}
+    </div>
 
         <div className="post-Icon-Blocks" style={{ height: "40px",backgroundColor:"rgb(34, 33, 33)"}}>
           <div className="leftIcon">

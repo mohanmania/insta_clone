@@ -156,28 +156,9 @@ function Chatbot() {
 
   return (
     <div className="chatbot">
-    <span onClick={()=> navigate("/home")}>close</span>
+    <span onClick={()=> navigate("/home")}  style={{color:"blue"}}>close</span>
      
-    <div
-        className={`toggle-button ${isActive ? 'active' : ''}`}
-        style={{
-          position: 'fixed',
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-          zIndex: 1000,
-          cursor: isDragging ? 'grabbing' : 'grab',
-          display: 'none', 
-        }}
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-        onClick={handleToggleClick}
-      >
-        <Menu size={24} color={isActive ? "white" : "currentColor"} />
-      </div>
-
-      <div className={`leftSideHome ${isLeftNavOpen ? 'open' : ''}`}>
-        <Leftnav />
-      </div>
+    
 
 
       <div className="chat-history">
@@ -195,8 +176,8 @@ function Chatbot() {
           onChange={(e) => setUserMessage(e.target.value)}
           placeholder="Type a message..."
         />
-        <button onClick={sendMessage}>Send</button>
-        <button onClick={showHelp}>Help</button>
+        <button onClick={sendMessage} style={{backgroundColor:"white",color:"black"}}>Send</button>
+        <button onClick={showHelp} style={{backgroundColor:"red", color:"white"}}>Help</button>
       </div>
 
       {showFAQs && (

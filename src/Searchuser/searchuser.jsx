@@ -1,6 +1,5 @@
 
 
-// InstagramProfile.js
 import React, { useState,useEffect } from 'react';
 import './searcheuser.css';
 import FaceIcon from '@mui/icons-material/Face';

@@ -1,6 +1,4 @@
 
-
-
 import React, { useState } from "react";
 import { Snackbar, Button } from "@mui/material";
 import "./rightcontainer.css";
@@ -10,8 +8,6 @@ import {
    Dialog, DialogActions, DialogContent, 
   DialogContentText, DialogTitle, IconButton, Slide
 } from '@mui/material'; 
-
-
 
 export default function Rightnav() {
   const navigate = useNavigate()

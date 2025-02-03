@@ -69,15 +69,3 @@ body{
 }
 
 
-/* 
-.leftSideHome.open::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(55, 54, 54, 0.5);
-  z-index: -1;
-  overflow:scroll;
-} */

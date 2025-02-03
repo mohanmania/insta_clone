@@ -23,7 +23,7 @@ const storage = getStorage();
 const storyBlockRef = useRef(null);
 
   
-const defaultImage = "https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg";
+const defaultImage = "https://cdn.pixabay.com/photo/2015/09/16/08/55/online-942406_1280.jpg";
 const defaultUsername = "Guest-Login";
 
 useEffect(() => {
@@ -104,16 +104,16 @@ useEffect(() => {
             username: "krishnanna"
         },
         {
-            image: "https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg",
-            username: "D..దుర్గ దుర్గ89"
+            image: "https://www.noncopyright.com/wp-content/uploads/2018/02/pexels-photo-623080-1024x682.jpeg",
+            username: "D.MAna89"
         },
         {
-            image: "https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg",
-            username: "D..దుర్గ దుర్గ89"
+            image: "https://images5.alphacoders.com/411/thumb-1920-411178.jpg",
+            username: "D.Prasad89"
         },
         {
-            image: "https://cdn.pixabay.com/photo/2020/09/19/20/01/woman-5585332_1280.jpg",
-            username: "D..దుర్గ దుర్గ89"
+            image: "https://aofirs.org/media/k2/items/cache/3338996a2bd1b2208298d48fab11ac9d_XL.jpg",
+            username: "VIjay si"
         }
     ];
 
@@ -291,6 +291,54 @@ useEffect(() => {
             <Post/>
             <Post/>
             <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+            <Post/>
+
 
         </div>
     );
