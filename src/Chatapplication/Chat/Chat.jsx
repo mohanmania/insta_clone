@@ -583,7 +583,13 @@ const ChatRoom = () => {
   const handleJoinRoom = async () => {
     const roomRef = doc(db, "rooms", roomName);
     const roomDoc = await getDoc(roomRef);
-
+    if(password.length>0 && username.length>0){
+      setNotification({
+        open: true,
+        message: "c",
+        severity: "warning",
+      });
+    }
     if (roomDoc.exists()) {
       const roomData = roomDoc.data();
       if (roomData.password === password && roomData.creator === username) {
@@ -602,6 +608,7 @@ const ChatRoom = () => {
           severity: "warning",
         });
       }
+    
     } else {
       setNotification({
         open: true,
@@ -664,7 +671,7 @@ const ChatRoom = () => {
         <div className="create-room">
           <input
             type="text"
-            placeholder="Enter Room Name"
+            placeholder="Room Name"
             value={roomName}
             onChange={(e) => setRoomName(e.target.value)}
           />
@@ -706,7 +713,7 @@ const ChatRoom = () => {
               onClick={handleCreateRoom}
               disabled={!username || !password}
             >
-              Create
+              Create Room
             </button>
           </div>
         )}
@@ -715,18 +722,18 @@ const ChatRoom = () => {
           <div className="password-prompt">
             <input
               type="text"
-              placeholder="Enter Username"
+              placeholder="Room Name"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             <input
               type="password"
-              placeholder="Enter Password"
+              placeholder=" room password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
             <button onClick={handleJoinRoom} disabled={!username || !password}>
-              Join 
+              Join Room
             </button>
           </div>
         )}

@@ -86,9 +86,10 @@
   animation: slideInTop 1s ease-in-out;
 }
 
+
 .create-room input {
   padding: 12px;
-  width: calc(100% - 140px);
+  width: calc(100% - 100px);
   font-weight: 300;
   font-family: 'Times New Roman', Times, serif;
   color: black;
@@ -109,6 +110,7 @@
   transition: all 0.3s;
   min-width: 120px;
 }
+
 
 .create-room button:hover {
   background-color: #2980b9;
@@ -164,10 +166,16 @@
     border-radius: 5px;
     margin: 10px;
     height: 35px;
-    
-
+    &::placeholder{
+      color: rgb(155, 20, 20);
+    }
+    &:hover{
+      color: #24aa29;
+      cursor: pointer;
+    }
+  
   }
-  color: rgb(232, 222, 222);
+  color: rgb(154, 103, 103);
   text-align: center;
   align-items: center;
     border: 1px solid rgb(57, 55, 55);
@@ -177,8 +185,13 @@
     border: 1px solid;
     height: 35px;
     border-radius: 5px;
+    color: white;
+    font-weight: 700;
+    &:hover{
+      background-color: white;
+      color: green;
+    }
   }
-  /* background-color: #7b854b; */
 }
 
 
@@ -191,12 +204,13 @@
     color: #993c3c;
     &:hover{
       color: #24aa29;
+      cursor: pointer;
     }
 
   }
-  color: rgb(232, 222, 222);
-  text-align: center;
-  align-items: center;
+    color: rgb(232, 222, 222);
+    text-align: center;
+    align-items: center;
     border: 1px solid rgb(57, 55, 55);
 
   button{
@@ -204,6 +218,12 @@
     border: 1px solid;
     height: 35px;
     border-radius: 5px;
+    color: white;
+    &:hover{
+      background-color: white;
+      color: green;
+      cursor: pointer;
+    }
   }
   /* background-color: #7b854b; */
 }
@@ -345,7 +365,7 @@ form button:hover {
     
     .chatroom-container {
       height: 100vh;
-      flex-direction: column;
+      flex-direction: row;
       border-radius: 0;
     }
     .password-prompt{
@@ -358,7 +378,7 @@ form button:hover {
       }
       color: rgb(232, 222, 222);
       text-align: center;
-      align-items: center;
+        align-items: center;
         border: 1px solid rgb(57, 55, 55);
     
       button{
@@ -368,6 +388,9 @@ form button:hover {
         border-radius: 5px;
       }
  
+    }
+    .chatroom-container{
+      display: flex;
     }
     
     
@@ -395,39 +418,28 @@ form button:hover {
         height: 35px;
         border-radius: 5px;
               }
-      /* background-color: #7b854b; */
     }
   
-    /* Sidebar is hidden by default */
     .sidebar {
-      width: 250px;
-      height: 100%;
-      position: fixed;
-      left: -250px; /* Move off-screen */
-      top: 0;
-      z-index: 1000;
-      transition: left 0.3s ease-in-out;
+      width: 30%;
+     
     }
-  
-    /* Show sidebar when active */
+
     .sidebar.active {
       left: 0;
     }
   
-    /* Ensure chat content takes full width */
     .chat-content {
       flex: 1;
-      width: 100%;
+      width: 70%;
     }
   
-    /* Make messages visible and usable */
     .chat-box {
       flex: 1;
       padding: 15px;
     }
   
-    /* Display toggle button for sidebar */
-    .menu-toggle {
+  .menu-toggle {
       display: block;
       position: fixed;
       top: 10px;
@@ -441,7 +453,7 @@ form button:hover {
       cursor: pointer;
     }
   
-    /* Adjust message input form */
+   
     form {
       flex-wrap: wrap;
     }

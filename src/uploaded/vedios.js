@@ -7,17 +7,15 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import { db } from "../firebase/firebase";
 import { Button, message, Spin } from "antd";
-import Snackbar from '@mui/material/Snackbar';
-import Alert from '@mui/material/Alert';
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 import CommentIcon from "@mui/icons-material/Comment";
 import { addDoc, collection, getDocs, query } from "firebase/firestore";
 import Leftnav from "../componentss/leftsidebar";
-import { Menu } from 'lucide-react'; 
-
+import { Menu } from "lucide-react";
 
 const demoVideos = [
-  
   {
     id: 11,
     title: "Food Video",
@@ -68,7 +66,6 @@ const demoVideos = [
     src: "https://www.w3schools.com/html/movie.mp4",
   },
 
-  
   {
     id: 8,
     title: "Sports Video",
@@ -112,90 +109,89 @@ export default function Videos() {
   const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const [canScroll, setCanScroll] = useState(true);
   const [savedVideos, setSavedVideos] = useState([]);
-  const[open,setOpen] = useState(false)
-   const [isLeftNavOpen, setIsLeftNavOpen] = useState(false);
-     const [position, setPosition] = useState({ x: 20, y: 20 });
-     const [isDragging, setIsDragging] = useState(false);
-     const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
-     const [isActive, setIsActive] = useState(false);
-   
-     useEffect(() => {
-       // Add global mouse/touch event listeners
-       if (isDragging) {
-         document.addEventListener('mousemove', handleMouseMove);
-         document.addEventListener('mouseup', handleMouseUp);
-         document.addEventListener('touchmove', handleTouchMove);
-         document.addEventListener('touchend', handleMouseUp);
-       }
-   
-       return () => {
-         document.removeEventListener('mousemove', handleMouseMove);
-         document.removeEventListener('mouseup', handleMouseUp);
-         document.removeEventListener('touchmove', handleTouchMove);
-         document.removeEventListener('touchend', handleMouseUp);
-       };
-     }, [isDragging]);
-   
-     // Handle drag start
-     const handleMouseDown = (e) => {
-       e.preventDefault();
-       setIsDragging(true);
-       setDragOffset({
-         x: e.clientX - position.x,
-         y: e.clientY - position.y
-       });
-     };
-   
-     // Handle dragging
-     const handleMouseMove = (e) => {
-       if (isDragging) {
-         e.preventDefault();
-         const newX = e.clientX - dragOffset.x;
-         const newY = e.clientY - dragOffset.y;
-         
-         // Keep toggle button within viewport bounds
-         const maxX = window.innerWidth - 50;
-         const maxY = window.innerHeight - 50;
-         
-         setPosition({
-           x: Math.min(Math.max(0, newX), maxX),
-           y: Math.min(Math.max(0, newY), maxY)
-         });
-       }
-     };
-   
-     // Handle drag end
-     const handleMouseUp = () => {
-       setIsDragging(false);
-     };
-   
-     // Touch event handlers
-     const handleTouchStart = (e) => {
-       const touch = e.touches[0];
-       handleMouseDown({ 
-         preventDefault: () => e.preventDefault(),
-         clientX: touch.clientX, 
-         clientY: touch.clientY 
-       });
-     };
-   
-     const handleTouchMove = (e) => {
-       const touch = e.touches[0];
-       handleMouseMove({ 
-         preventDefault: () => e.preventDefault(),
-         clientX: touch.clientX, 
-         clientY: touch.clientY 
-       });
-     };
-   
-     // Handle toggle click
-     const handleToggleClick = (e) => {
-       if (!isDragging) {
-         setIsLeftNavOpen(!isLeftNavOpen);
-         setIsActive(!isActive);
-       }
-     };
-   
+  const [open, setOpen] = useState(false);
+  const [isLeftNavOpen, setIsLeftNavOpen] = useState(false);
+  const [position, setPosition] = useState({ x: 20, y: 20 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
+  const [isActive, setIsActive] = useState(false);
+
+  useEffect(() => {
+    // Add global mouse/touch event listeners
+    if (isDragging) {
+      document.addEventListener("mousemove", handleMouseMove);
+      document.addEventListener("mouseup", handleMouseUp);
+      document.addEventListener("touchmove", handleTouchMove);
+      document.addEventListener("touchend", handleMouseUp);
+    }
+
+    return () => {
+      document.removeEventListener("mousemove", handleMouseMove);
+      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener("touchmove", handleTouchMove);
+      document.removeEventListener("touchend", handleMouseUp);
+    };
+  }, [isDragging]);
+
+  // Handle drag start
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    setIsDragging(true);
+    setDragOffset({
+      x: e.clientX - position.x,
+      y: e.clientY - position.y,
+    });
+  };
+
+  // Handle dragging
+  const handleMouseMove = (e) => {
+    if (isDragging) {
+      e.preventDefault();
+      const newX = e.clientX - dragOffset.x;
+      const newY = e.clientY - dragOffset.y;
+
+      // Keep toggle button within viewport bounds
+      const maxX = window.innerWidth - 50;
+      const maxY = window.innerHeight - 50;
+
+      setPosition({
+        x: Math.min(Math.max(0, newX), maxX),
+        y: Math.min(Math.max(0, newY), maxY),
+      });
+    }
+  };
+
+  // Handle drag end
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  // Touch event handlers
+  const handleTouchStart = (e) => {
+    const touch = e.touches[0];
+    handleMouseDown({
+      preventDefault: () => e.preventDefault(),
+      clientX: touch.clientX,
+      clientY: touch.clientY,
+    });
+  };
+
+  const handleTouchMove = (e) => {
+    const touch = e.touches[0];
+    handleMouseMove({
+      preventDefault: () => e.preventDefault(),
+      clientX: touch.clientX,
+      clientY: touch.clientY,
+    });
+  };
+
+  // Handle toggle click
+  const handleToggleClick = (e) => {
+    if (!isDragging) {
+      setIsLeftNavOpen(!isLeftNavOpen);
+      setIsActive(!isActive);
+    }
+  };
 
   const handleLike = (index) => {
     const newLiked = [...liked];
@@ -229,8 +225,7 @@ export default function Videos() {
       const newShowCommentBox = [...showCommentBox];
       newShowCommentBox[index] = false;
       setShowCommentBox(newShowCommentBox);
-       message.success("comment added successfully")
-
+      message.success("comment added successfully");
     } catch (error) {
       console.error("Error adding comment: ", error);
     }
@@ -246,19 +241,19 @@ export default function Videos() {
     setTimeout(() => {
       setShareModal(false);
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-      <Alert
-        onClose={handleClose}
-        severity="success"
-        variant="filled"
-        sx={{ width: '100%' }}
-      >
-      vedio successfully shared
-      </Alert>
-    </Snackbar>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          vedio successfully shared
+        </Alert>
+      </Snackbar>;
     }, 500);
   };
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
 
@@ -300,8 +295,8 @@ export default function Videos() {
   const handleSave = async (video) => {
     try {
       await addDoc(collection(db, "savedVideos"), video);
-    
-      message.success("vedio successfully saved")
+
+      message.success("vedio successfully saved");
     } catch (error) {
       console.error("Error saving video: ", error);
     }
@@ -370,30 +365,29 @@ export default function Videos() {
   }, [canScroll]);
 
   return (
-    <div  className="main-conatiner">
-   <div className="leftSidenav">
-    <div
-           className={`toggle-button ${isActive ? 'active' : ''}`}
-           style={{
-             position: 'fixed',
-             left: `${position.x}px`,
-             top: `${position.y}px`,
-             zIndex: 1000,
-             cursor: isDragging ? 'grabbing' : 'grab',
-             display: 'none',
-           }}
-           onMouseDown={handleMouseDown}
-           onTouchStart={handleTouchStart}
-           onClick={handleToggleClick}
-         >
-           <Menu size={24} color={isActive ? "white" : "currentColor"} />
-         </div>
-         <div className={`leftSideHome ${isLeftNavOpen ? 'open' : ''}`}>
-        <Leftnav />
+    <div className="main-conatiner">
+      <div className="leftSidenav">
+        <div
+          className={`toggle-button ${isActive ? "active" : ""}`}
+          style={{
+            position: "fixed",
+            left: `${position.x}px`,
+            top: `${position.y}px`,
+            zIndex: 1000,
+            cursor: isDragging ? "grabbing" : "grab",
+            display: "none",
+          }}
+          onMouseDown={handleMouseDown}
+          onTouchStart={handleTouchStart}
+          onClick={handleToggleClick}
+        >
+          <Menu size={24} color={isActive ? "white" : "currentColor"} />
+        </div>
+        <div className={`leftSideHome ${isLeftNavOpen ? "open" : ""}`}>
+          <Leftnav />
+        </div>
       </div>
-
-   </div>
-     <div className="main-div">
+      <div className="main-div">
         <div className="filter-options">
           <button
             onClick={() => filterVideos("all")}
@@ -428,104 +422,106 @@ export default function Videos() {
           <button onClick={fetchSavedVideos}>Saved Items</button>
         </div>
 
-      {!isDoubleClicked ? (
-        <div
-          className={`video-container ${
-            selectedCategory === "all" ? "grid" : "single-column"
-          }`}
-        >
-          {filteredVideos.map((video, index) => (
-            <div key={video.id} className="video-item">
-              <div className="video-wrapper">
-                <video
-                  data-src={video.src}
-                  onClick={handleVideoClick}
-                  onDoubleClick={() => handleVideoDoubleClick(index)}
-                  muted
-                  loop
-                  className="uploaded-video"
-                ></video>
-              </div>
-              <div className="icon-container">
-                <IconButton onClick={() => handleLike(index)}>
-                  {liked[index] ? (
-                    <FavoriteIcon fontSize="small" style={{ color: "red" }} />
-                  ) : (
-                    <FavoriteBorderIcon fontSize="small" />
-                  )}
-                </IconButton>
-                <IconButton onClick={handleShare}>
-                  <ShareIcon fontSize="small" />
-                </IconButton>
-                <IconButton onClick={() => handleSave(video)}>
-                  <BookmarkBorderIcon fontSize="small" />
-                </IconButton>
-                <IconButton onClick={() => handleCommentIconClick(index)}>
-                  <CommentIcon fontSize="small" />
-                </IconButton>
-              </div>
-              {showCommentBox[index] && (
-                <div className="comment-box">
-                  <textarea
-                    placeholder="Add a comment..."
-                    value={comment[index]}
-                    onChange={(e) => handleCommentChange(index, e.target.value)}
-                    className="comment-textarea"
-                  ></textarea>
-                  <button
-                    onClick={() => handleCommentSubmit(index)}
-                    className="comment-button"
-                  >
-                    Send
-                  </button>
+        {!isDoubleClicked ? (
+          <div
+            className={`video-container ${
+              selectedCategory === "all" ? "grid" : "single-column"
+            }`}
+          >
+            {filteredVideos.map((video, index) => (
+              <div key={video.id} className="video-item">
+                <div className="video-wrapper">
+                  <video
+                    data-src={video.src}
+                    onClick={handleVideoClick}
+                    onDoubleClick={() => handleVideoDoubleClick(index)}
+                    muted
+                    loop
+                    className="uploaded-video"
+                  ></video>
                 </div>
-              )}
-              {shareModal && !shared && (
-                <div className="share-modal">
-                  <div className="share-content">
-                    <p>Share this video with a random account</p>
+                <div className="icon-container">
+                  <IconButton onClick={() => handleLike(index)}>
+                    {liked[index] ? (
+                      <FavoriteIcon fontSize="small" style={{ color: "red" }} />
+                    ) : (
+                      <FavoriteBorderIcon fontSize="small" />
+                    )}
+                  </IconButton>
+                  <IconButton onClick={handleShare}>
+                    <ShareIcon fontSize="small" />
+                  </IconButton>
+                  <IconButton onClick={() => handleSave(video)}>
+                    <BookmarkBorderIcon fontSize="small" />
+                  </IconButton>
+                  <IconButton onClick={() => handleCommentIconClick(index)}>
+                    <CommentIcon fontSize="small" />
+                  </IconButton>
+                </div>
+                {showCommentBox[index] && (
+                  <div className="comment-box">
+                    <textarea
+                      placeholder="Add a comment..."
+                      value={comment[index]}
+                      onChange={(e) =>
+                        handleCommentChange(index, e.target.value)
+                      }
+                      className="comment-textarea"
+                    ></textarea>
                     <button
-                      onClick={handleShareSubmit}
-                      className="share-button"
+                      onClick={() => handleCommentSubmit(index)}
+                      className="comment-button"
                     >
                       Send
                     </button>
                   </div>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className="double-click-video-container">
-          <video
-            src={filteredVideos[currentVideoIndex]?.src}
-            autoPlay
-            controls
-            onEnded={playNextVideo}
-            className="fullscreen-video"
-          ></video>
-        </div>
-      )}
-
-      <div className="saved-videos-section">
-        <h2>Saved Items</h2>
-        <div className="saved-videos-container">
-          {savedVideos.map((video, index) => (
-            <div key={index} className="video-item">
-              <div className="video-wrapper">
-                <video
-                  src={video.src}
-                  controls
-                  className="uploaded-video"
-                ></video>
+                )}
+                {shareModal && !shared && (
+                  <div className="share-modal">
+                    <div className="share-content">
+                      <p>Share this video with a random account</p>
+                      <button
+                        onClick={handleShareSubmit}
+                        className="share-button"
+                      >
+                        Send
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
-              <div className="video-title">{video.title}</div>
-            </div>
-          ))}
+            ))}
+          </div>
+        ) : (
+          <div className="double-click-video-container">
+            <video
+              src={filteredVideos[currentVideoIndex]?.src}
+              autoPlay
+              controls
+              onEnded={playNextVideo}
+              className="fullscreen-video"
+            ></video>
+          </div>
+        )}
+
+        <div className="saved-videos-section">
+          <h2>Saved Items</h2>
+          <div className="saved-videos-container">
+            {savedVideos.map((video, index) => (
+              <div key={index} className="video-item">
+                <div className="video-wrapper">
+                  <video
+                    src={video.src}
+                    controls
+                    className="uploaded-video"
+                  ></video>
+                </div>
+                <div className="video-title">{video.title}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
     </div>
   );
 }

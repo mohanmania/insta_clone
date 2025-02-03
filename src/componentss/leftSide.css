@@ -15,7 +15,7 @@
 .logo {
   width: 100px;
   height: 25px;
-  margin-left: 39px;
+  margin-left: 35px;
   border-bottom: 1px solid;
   margin-bottom: 10px;
 }
@@ -43,8 +43,9 @@
   padding: 5px;
   cursor: pointer;
   &:hover {
-    background-color: gray;
+    background-color: rgb(100, 98, 98);
     border-radius: 10px;
+    border: 1px solid rgb(47, 46, 46);
     cursor: pointer;
   }
 }
@@ -187,6 +188,7 @@ video {
   border-radius: 5px;
   margin-top: 5px;
   color: #fcf6f6;
+  font-size: 15px;
 
 }
 .drawer-option:hover{
@@ -282,7 +284,9 @@ video {
   color: red;
   font-size: 14px;
 }
-
+.navName{
+  font-size: 17px;
+}
 @media (max-width: 768px){
   .leftSidepart{
     font-size: 10px;

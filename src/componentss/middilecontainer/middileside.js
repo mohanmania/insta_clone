@@ -183,20 +183,12 @@ useEffect(() => {
 
     return (
         <div className="MiddileHomeside">
-          <button 
-    className={`carousel-button left ${isAtStart ? 'hidden' : ''}`}
-    onClick={() => scroll('left')}
->
-    <ChevronLeft size={20} />
-</button>
+         
 
-<button 
-    className={`carousel-button right ${isAtEnd ? 'hidden' : ''}`}
-    onClick={() => scroll('right')}
->
-    <ChevronRight size={20} />
-</button>
             <div className="storyBlock" ref={storyBlockRef}>
+           
+
+
                 {stories.map((story, index) => (
                     <div 
                         key={index} 
@@ -218,7 +210,9 @@ useEffect(() => {
                         <div className="fontName">{story.username}</div>
                     </div>
                 ))}
+   
             </div>
+          
 
        
             {selectedStory && (
