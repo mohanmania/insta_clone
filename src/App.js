@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{Suspense, useEffect} from "react";
 import "./App.css";
 import Login from "./componentss/Login/Login";
 import Register from "./Register/Register";
@@ -8,7 +8,8 @@ import Rightnav from "./componentss/rightcontainer/rightcontainer";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import Home from "./componentss/home";
-import Vedios from "./uploaded/vedios";
+import ErrorPage from "./componentss/ErrorPage";
+
 
 import useUser from "./useStore/userstore";
 
@@ -19,6 +20,7 @@ import Chatbot from "./Chatbot/Chatbot";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase/firebase";
 import { useUserStore } from "./useStore/userstore";
+const Vedios = React.lazy(()=> import("./uploaded/vedios"))
 
 
 function App() {
@@ -33,31 +35,28 @@ function App() {
       unSub();
     };
   }, [fetchUserInfo]);
-
-
-  return (
-    <>
+ return(
       <BrowserRouter>
-       
-        <Routes>
-          <Route path="/reels" element={<Vedios />} />
-          <Route path="/userprofile" element={<SearchComponent/>}/>
-
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-
-          <Route path="/signup" element={<Register />} />
-
-          <Route path="/message" element={<ChatRoom />} />
-          <Route path="/help" element={<Chatbot/>}/>
-
-          <Route path="*" element={<h1>404 - Page Not Found</h1>} />
-        </Routes>
+        <Suspense 
+          fallback={
+            <div className="flex items-center justify-center h-screen text-lg font-semibold">
+              Loading...
+            </div>
+          }
+        >
+          <Routes>
+            <Route path="/reels" element={<Vedios />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/userprofile" element={<SearchComponent />} />
+            <Route path="/" element={<Login />} />
+            <Route path="/signup" element={<Register />} />
+            <Route path="/message" element={<ChatRoom />} />
+            <Route path="/help" element={<Chatbot />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
-    </>
-  );
-}
+    );
+  }
 
 export default App;
-
-

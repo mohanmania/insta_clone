@@ -1,12 +1,13 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, Suspense } from "react";
 import "./middile.css";
-import Post from "./post";
+
 import { getStorage, ref, getDownloadURL,uploadBytes} from "firebase/storage";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import{db,auth} from "../../firebase/firebase"
 
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { useUserStore } from "../../useStore/userstore";
+const Post = React.lazy(()=>import("./post"))
 
 function MiddileSide() {
     const [selectedStory, setSelectedStory] = useState(null);
@@ -33,12 +34,12 @@ useEffect(() => {
             if (!userId) return;
 
             const imageRef = ref(storage, `users/${userId}/profile.jpg`);
-            const imageURL = await getDownloadURL(imageRef); // Get the download URL
+            const imageURL = await getDownloadURL(imageRef); 
 
-            setImageUrl(imageURL); // Set the URL to the state
+            setImageUrl(imageURL); 
         } catch (error) {
             console.error("Error fetching image:", error);
-            setImageUrl(defaultImage); // fallback image
+            setImageUrl(defaultImage);
         }
     };
     fetchUserImage();
@@ -272,6 +273,7 @@ useEffect(() => {
                     </div>
                 </div>
             )}
+            <Suspense  fallback={<h3 style={{color:"red"}}>Content Loading. .....</h3>}>
             <Post/>
             <Post/>
             <Post/>
@@ -339,9 +341,17 @@ useEffect(() => {
             <Post/>
             <Post/>
 
+                
+            </Suspense>
 
         </div>
     );
 }
 
 export default MiddileSide;
+
+
+
+
+
+// diwankshi@jcsoftwaresolution.com

@@ -11,7 +11,6 @@ import "./post.css";
 import { message } from "antd";
 import { Loader2 } from 'lucide-react';
 
-
 const followers = [
   { username: 'mohanmania51', photo: 'https://images.pexels.com/photos/938639/pexels-photo-938639.jpeg?auto=compress&cs=tinysrgb&w=600' },
   { username: 'Anviyth@le-0 t-', photo: 'https://images.pexels.com/photos/30092632/pexels-photo-30092632/free-photo-of-young-man-overlooking-scenic-lake-in-india.jpeg?auto=compress&cs=tinysrgb&w=600' },
