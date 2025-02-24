@@ -10,6 +10,9 @@ import { collection, addDoc, doc, setDoc } from "firebase/firestore"; // Firebas
 import "./post.css";
 import { message } from "antd";
 import { Loader2 } from 'lucide-react';
+import { memo } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { FixedSizeList as List } from "react-window";
 
 const followers = [
   { username: 'mohanmania51', photo: 'https://images.pexels.com/photos/938639/pexels-photo-938639.jpeg?auto=compress&cs=tinysrgb&w=600' },
@@ -103,7 +106,7 @@ const postVideos = [
 
 
 
-export default function Post() {
+export default function Post () {
   const [randomUser, setRandomUser] = useState({});
   const [randomPostContent, setRandomPostContent] = useState(""); 
   const [liked, setLiked] = useState(false);
@@ -186,7 +189,7 @@ export default function Post() {
     <div className="postSection">
       <div className="post">
         <div className="postinfo">
-          <img className="profileInfoimg" src={randomUser.photo} alt="Profile" />
+          <img className="profileInfoimg" src={randomUser.photo} alt="Profile"  effect="blur" />
           <div className="postInfoUserName">{randomUser.username}</div>
         </div>
 
@@ -209,7 +212,7 @@ export default function Post() {
           Your browser does not support the video
         </video>
       ) : (
-        <img
+        <img   effect="blur" loading="lazy"
           className={`post-img w-full ${isLoading ? 'hidden' : 'block'}`}
           src={randomPostContent?randomPostContent:"Loading..."}
           alt="Post"

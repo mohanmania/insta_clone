@@ -57,7 +57,7 @@ const ChatRoom = () => {
     });
   };
 
-  // Handle dragging
+
   const handleMouseMove = (e) => {
     if (isDragging) {
       const newX = e.clientX - dragOffset.x;

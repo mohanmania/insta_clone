@@ -14,6 +14,8 @@ import CommentIcon from "@mui/icons-material/Comment";
 import { addDoc, collection, getDocs, query } from "firebase/firestore";
 import Leftnav from "../componentss/leftsidebar";
 import { Menu } from "lucide-react";
+import LazyVideo from "./vedioLoad";
+import { lazy } from "react-lazy-load-image-component";
 
 const demoVideos = [
   {
@@ -605,6 +607,7 @@ export default function Videos() {
                   <video
                     src={video.src}
                     controls
+                    loading = "lazy"
                     className="uploaded-video"
                   ></video>
                 </div>
